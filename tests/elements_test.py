@@ -59,4 +59,4 @@ class TestElements:
             key_word = web_table_page.add_new_person()[random.randint(0,5)]
             web_table_page.search_some_person(key_word)
             table_result = web_table_page.check_search_person()
-            assert key_word in table_result, "the person was not found in the table"
+            assert key_word in table_result, "the Person was not found in the table"
