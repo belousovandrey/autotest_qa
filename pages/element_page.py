@@ -138,7 +138,7 @@ class WebTablePage(BasePage):
         count = [5, 10, 20, 25, 50, 100]
         data = []
         for x in count:
-            count_row_button = self.go_to_element(self.element_is_visible(self.locators.COUNT_ROW_LIST))
+            count_row_button = self.element_is_visible(self.locators.COUNT_ROW_LIST)
             self.go_to_element(count_row_button)
             count_row_button.click()
             self.element_is_visible((By.CSS_SELECTOR, f'option[value="{x}"]')).click()
