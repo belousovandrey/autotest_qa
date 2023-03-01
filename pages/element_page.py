@@ -177,9 +177,8 @@ class LinksPage(BasePage):
         request = requests.get(link_href)
         if request.status_code == 200:
             simple_link.click()
-            self.driver.switch_to.window(self.driver.window_handles[1])
+            self.driver.switch_to.window(self.driver.window_handles[2])
             url = self.driver.current_url
-            print(link_href, url)
             return link_href, url
         else:
             return link_href, request.status_code
