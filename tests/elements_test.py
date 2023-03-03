@@ -1,7 +1,7 @@
 import random
 
 from pages.element_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablePage, ButtonPage, LinksPage, \
-    UploadAndDownloadPage
+    UploadAndDownloadPage, DynamicPropertiesPage
 
 
 class TestElements:
@@ -112,19 +112,27 @@ class TestElements:
             resp_code = links_page.check_broken_link('https://demoqa.com/bad-request')
             assert resp_code == 400, "the link works or the status code in son 400"
 
-
     class TestUploadAndDownload:
 
-        def test_upload_file(self,driver):
+        def test_upload_file(self, driver):
             upload_download_page = UploadAndDownloadPage(driver, "https://demoqa.com/upload-download")
             upload_download_page.open()
             upload_download_page.upload_file()
             file_name, result = upload_download_page.upload_file()
             assert file_name == result, "the file has not been uploaded"
 
-
-        def test_download_file(self,driver):
+        def test_download_file(self, driver):
             upload_download_page = UploadAndDownloadPage(driver, "https://demoqa.com/upload-download")
             upload_download_page.open()
             check = upload_download_page.download_file()
             assert check is True, "the file has not been downloaded"
+
+    class TestDynamicPropertiesPage:
+
+        def test_dynamic_properties(self, driver):
+            dynamic_properties_page = DynamicPropertiesPage(driver, 'https://demoqa.com/dynamic-properties')
+            dynamic_properties_page.open()
+            color_before, color_after = dynamic_properties_page.check_changed_of_color()
+            dynamic_properties_page.check_appear_of_button()
+            # assert  color_after != color_before
+
