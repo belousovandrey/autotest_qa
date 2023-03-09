@@ -11,6 +11,7 @@ from generator.generator import generated_person, generated_file
 from locators.elements_page_locators import TextBoxPageLocators, CheckBoxPageLocators, RadioButtonPageLocators, \
     WebTablePageLocators, ButtonsPageLocators, LinksPageLocators, UploadAndDownloadPageLocators, \
     DynamicPropertiesPageLocators
+from locators.form_page_locators import FormPageLocators
 from pages.base_page import BasePage
 
 
@@ -242,3 +243,8 @@ class DynamicPropertiesPage(BasePage):
         except TimeoutException:
             return False
         return True
+
+
+
+
+
