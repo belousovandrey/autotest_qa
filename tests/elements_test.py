@@ -1,7 +1,7 @@
 import random
 
 from pages.element_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablePage, ButtonPage, LinksPage, \
-    UploadAndDownloadPage
+    UploadAndDownloadPage, DynamicPropertiesPage
 
 
 class TestElements:
@@ -124,8 +124,8 @@ class TestElements:
 
 
         def test_download_file(self,driver):
-            links_page = UploadAndDownloadPage(driver, "https://demoqa.com/upload-download")
-            links_page.open()
+            upload_download_page = UploadAndDownloadPage(driver, "https://demoqa.com/upload-download")
+            upload_download_page.open()
             check = upload_download_page.download_file()
             assert check is True, "the file has not been downloaded"
 

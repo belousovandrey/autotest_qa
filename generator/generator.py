@@ -17,12 +17,13 @@ def generated_person():
         department=faker_ru.job(),
         current_address=faker_ru.address(),
         permanent_address=faker_ru.address(),
+        mobile=faker_ru.msisdn()
     )
 
 
 def generated_file():
-    # path = rf'E:\automation_qa_course\filetest{random.randint(0, 999)}.txt'
-    path = 'E:\Dropbox\Dropbox\pythonProjects\autotest_qa_main\filetest958.txt'
+    # path = rf'G:\Мой диск\Python\auto_test_qa_notebook\filetest{random.randint(0, 999)}.txt' #указать абсолютный путь до файла
+    path = rf'G:\Мой диск\Python\auto_test_qa_notebook\filetest{random.randint(0, 999)}.txt' #указать абсолютный путь до файла
     file = open(path, 'w+')
     file.write(f'Hello World{random.randint(0, 999)}')
     file.close()
