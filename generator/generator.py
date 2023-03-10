@@ -22,8 +22,8 @@ def generated_person():
 
 
 def generated_file():
+    path = rf'E:\Dropbox\Dropbox\pythonProjects\autotest_qa_main\filetest{random.randint(0, 999)}.txt' #указать абсолютный путь до файла
     # path = rf'G:\Мой диск\Python\auto_test_qa_notebook\filetest{random.randint(0, 999)}.txt' #указать абсолютный путь до файла
-    path = rf'G:\Мой диск\Python\auto_test_qa_notebook\filetest{random.randint(0, 999)}.txt' #указать абсолютный путь до файла
     file = open(path, 'w+')
     file.write(f'Hello World{random.randint(0, 999)}')
     file.close()
