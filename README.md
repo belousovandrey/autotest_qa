@@ -1,1 +1,3 @@
-# auto_qa_main
+# autotest_qa_main
+
+Это набор всевозможных автотестов
