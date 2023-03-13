@@ -2,9 +2,10 @@ import random
 
 from selenium.common import TimeoutException
 from selenium.webdriver import Keys
+from selenium.webdriver.support.select import Select
 
-from generator.generator import generated_color
-from locators.widgets_page_locators import AccordianPageLocators, AutoCompletePageLocators
+from generator.generator import generated_color, generated_date
+from locators.widgets_page_locators import AccordianPageLocators, AutoCompletePageLocators, DatePickerPageLocators
 from pages.base_page import BasePage
 
 
@@ -44,7 +45,7 @@ class AutoCompletePage(BasePage):
             input_multi.send_keys(Keys.ENTER)
         return colors
 
-#     # @allure.step('remove value from multi autocomplete')
+    #     # @allure.step('remove value from multi autocomplete')
     def remove_value_from_multi(self):
         count_value_before = len(self.elements_are_present(self.locators.MULTI_VALUE))
         remove_button_list = self.elements_are_visible(self.locators.MULTI_VALUE_REMOVE)
@@ -54,7 +55,7 @@ class AutoCompletePage(BasePage):
         count_value_after = len(self.elements_are_present(self.locators.MULTI_VALUE))
         return count_value_before, count_value_after
 
-#     # @allure.step('check colors in multi autocomplete')
+    #     # @allure.step('check colors in multi autocomplete')
     def check_color_in_multi(self):
         color_list = self.elements_are_present(self.locators.MULTI_VALUE)
         colors = []
@@ -62,7 +63,7 @@ class AutoCompletePage(BasePage):
             colors.append(color.text)
         return colors
 
-#     # @allure.step('fill single autocomplete input')
+    #     # @allure.step('fill single autocomplete input')
     def fill_input_single(self):
         color = random.sample(next(generated_color()).color_name, k=1)
         input_single = self.element_is_clickable(self.locators.SINGLE_INPUT)
@@ -70,56 +71,61 @@ class AutoCompletePage(BasePage):
         input_single.send_keys(Keys.ENTER)
         return color[0]
 
-#     # @allure.step('check color in single autocomplete')
+    #     # @allure.step('check color in single autocomplete')
     def check_color_in_single(self):
         color = self.element_is_visible(self.locators.SINGLE_VALUE)
         return color.text
+
+
 #
 #
-# class DatePickerPage(BasePage):
-#     locators = DatePickerPageLocators()
-#
-#     # @allure.step('change date')
-#     def select_date(self):
-#         date = next(generated_date())
-#         input_date = self.element_is_visible(self.locators.DATE_INPUT)
-#         value_date_before = input_date.get_attribute('value')
-#         input_date.click()
-#         self.set_date_by_text(self.locators.DATE_SELECT_MONTH, date.month)
-#         self.set_date_by_text(self.locators.DATE_SELECT_YEAR, date.year)
-#         self.set_date_item_from_list(self.locators.DATE_SELECT_DAY_LIST, date.day)
-#         value_date_after = input_date.get_attribute('value')
-#         return value_date_before, value_date_after
-#
-#     # @allure.step('change select date and time')
-#     def select_date_and_time(self):
-#         date = next(generated_date())
-#         input_date = self.element_is_visible(self.locators.DATE_AND_TIME_INPUT)
-#         value_date_before = input_date.get_attribute('value')
-#         input_date.click()
-#         self.element_is_clickable(self.locators.DATE_AND_TIME_MONTH).click()
-#         self.set_date_item_from_list(self.locators.DATE_AND_TIME_MONTH_LIST, date.month)
-#         self.element_is_clickable(self.locators.DATE_AND_TIME_YEAR).click()
-#         self.set_date_item_from_list(self.locators.DATE_AND_TIME_YEAR_LIST, '2020')
-#         self.set_date_item_from_list(self.locators.DATE_SELECT_DAY_LIST, date.day)
-#         self.set_date_item_from_list(self.locators.DATE_AND_TIME_TIME_LIST, date.time)
-#         input_date_after = self.element_is_visible(self.locators.DATE_AND_TIME_INPUT)
-#         value_date_after = input_date_after.get_attribute('value')
-#         return value_date_before, value_date_after
-#
-#     # @allure.step('select date by text')
-#     def set_date_by_text(self, element, value):
-#         select = Select(self.element_is_present(element))
-#         select.select_by_visible_text(value)
-#
-#     @allure.step('select date item from list')
-#     def set_date_item_from_list(self, elements, value):
-#         item_list = self.elements_are_present(elements)
-#         for item in item_list:
-#             if item.text == value:
-#                 item.click()
-#                 break
-#
+class DatePickerPage(BasePage):
+    locators = DatePickerPageLocators()
+
+    # @allure.step('change date')
+    def select_date(self):
+        date = next(generated_date())
+        input_date = self.element_is_visible(self.locators.DATE_INPUT)
+        value_date_before = input_date.get_attribute('value')
+        input_date.click()
+        self.set_date_by_text(self.locators.DATE_SELECT_MONTH, date.month)
+        self.set_date_by_text(self.locators.DATE_SELECT_YEAR, date.year)
+        self.set_date_item_from_list(self.locators.DATE_SELECT_DAY_LIST, date.day)
+        value_date_after = input_date.get_attribute('value')
+        return value_date_before, value_date_after
+
+        #
+        #     # @allure.step('change select date and time')
+    def select_date_and_time(self):
+        date = next(generated_date())
+        input_date = self.element_is_visible(self.locators.DATE_AND_TIME_INPUT)
+        value_date_before = input_date.get_attribute('value')
+        input_date.click()
+        self.element_is_clickable(self.locators.DATE_AND_TIME_MONTH).click()
+        self.set_date_item_from_list(self.locators.DATE_AND_TIME_MONTH_LIST, date.month)
+        self.element_is_clickable(self.locators.DATE_AND_TIME_YEAR).click()
+        self.set_date_item_from_list(self.locators.DATE_AND_TIME_YEAR_LIST, '2020')
+        self.set_date_item_from_list(self.locators.DATE_SELECT_DAY_LIST, date.day)
+        self.set_date_item_from_list(self.locators.DATE_AND_TIME_TIME_LIST, date.time)
+        input_date_after = self.element_is_visible(self.locators.DATE_AND_TIME_INPUT)
+        value_date_after = input_date_after.get_attribute('value')
+        return value_date_before, value_date_after
+
+    #
+    #     # @allure.step('select date by text')
+    def set_date_by_text(self, element, value):
+        select = Select(self.element_is_present(element))
+        select.select_by_visible_text(value)
+
+    #
+    #     @allure.step('select date item from list')
+    def set_date_item_from_list(self, elements, value):
+        item_list = self.elements_are_present(elements)
+        for item in item_list:
+            if item.text == value:
+                item.click()
+                break
+
 #
 # class SliderPage(BasePage):
 #     locators = SliderPageLocators()
