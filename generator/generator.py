@@ -1,6 +1,7 @@
-from data.data import Person
 from faker import Faker
 import random
+
+from data.data import Person, Color
 
 faker_ru = Faker('ru_RU')
 Faker.seed()
@@ -22,9 +23,25 @@ def generated_person():
 
 
 def generated_file():
-    path = rf'E:\Dropbox\Dropbox\pythonProjects\autotest_qa_main\filetest{random.randint(0, 999)}.txt' #указать абсолютный путь до файла
+    path = rf'E:\Dropbox\Dropbox\pythonProjects\autotest_qa_main\filetest{random.randint(0, 999)}.txt'  # указать абсолютный путь до файла
     # path = rf'G:\Мой диск\Python\auto_test_qa_notebook\filetest{random.randint(0, 999)}.txt' #указать абсолютный путь до файла
     file = open(path, 'w+')
     file.write(f'Hello World{random.randint(0, 999)}')
     file.close()
     return file.name, path
+
+
+#
+def generated_color():
+    yield Color(
+        color_name=["Red", "Blue", "Green", "Yellow", "Purple", "Black", "White", "Voilet", "Indigo", "Magenta", "Aqua"]
+    )
+#
+#
+# def generated_date():
+#     yield Date(
+#         year=fake_en.year(),
+#         month=fake_en.month_name(),
+#         day=fake_en.day_of_month(),
+#         time="12:00"
+#     )
