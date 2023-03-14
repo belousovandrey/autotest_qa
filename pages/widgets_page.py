@@ -235,10 +235,11 @@ class SelectMenuPage(BasePage):
         self.element_is_visible(self.locators.OLD_STYLE).click()
         old_style = self.element_is_visible(self.locators.OLD_STYLE_INPUT).text
         self.element_is_visible(self.locators.MULTISELECT).click()
-        self.element_is_visible(self.locators.SELECT_VALUE_INPUT).send_keys(Keys.ENTER)
-        multiselect_value = self.element_is_visible(self.locators.MULTISELECT_INPUT).text
+        self.element_is_visible(self.locators.MULTISELECT_INPUT).send_keys(Keys.RETURN)
+        multiselect_value = self.element_is_visible(self.locators.MULTISELECT_INPUT_TEXT).text
+        self.element_is_visible(self.locators.MULTISELECT).click()
+        self.element_is_visible(self.locators.CARS).click()
 
-        time.sleep(5)
-        print(multiselect_value)
+        time.sleep(1)
 
-        # return  select_value, select_one, old_style
+        return select_value, select_one, old_style, multiselect_value

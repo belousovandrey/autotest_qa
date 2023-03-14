@@ -123,8 +123,9 @@ class TestWidgets:
         def test_select_menu(self, driver):
             select_menu_page = SelectMenuPage(driver, 'https://demoqa.com/select-menu')
             select_menu_page.open()
-            select_value, select_one,old_style = select_menu_page.test_select_menu()
+            select_value, select_one,old_style,multiselect_value = select_menu_page.test_select_menu()
 
             assert select_value == 'Group 1, option 1'
             assert select_one == 'Dr.'
             assert old_style == 'White'
+            assert multiselect_value == 'Green'
