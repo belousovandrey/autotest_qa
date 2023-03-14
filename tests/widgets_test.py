@@ -1,7 +1,7 @@
 import time
 
 from pages.widgets_page import AccordianPage, AutoCompletePage, DatePickerPage, SliderPage, ProgressBarPage, TabsPage, \
-    ToolTipsPage
+    ToolTipsPage, MenuPage
 
 
 class TestWidgets:
@@ -107,13 +107,13 @@ class TestWidgets:
             assert field_text == 'You hovered over the text field', 'hover missing or incorrect content'
             assert contrary_text == 'You hovered over the Contrary', 'hover missing or incorrect content'
             assert section_text == 'You hovered over the 1.10.32', 'hover missing or incorrect content'
-    #
-    # # @allure.feature('Menu Page')
-    # class TestMenuPage:
-    #     # @allure.title('Check all of the menu items')
-    #     def test_menu_items(self, driver):
-    #         menu_page = MenuPage(driver, 'https://demoqa.com/menu')
-    #         menu_page.open()
-    #         data = menu_page.check_menu()
-    #         assert data == ['Main Item 1', 'Main Item 2', 'Sub Item', 'Sub Item', 'SUB SUB LIST »', 'Sub Sub Item 1',
-    #                         'Sub Sub Item 2', 'Main Item 3'], "menu items do not exist or have not been selected"
+
+    # @allure.feature('Menu Page')
+    class TestMenuPage:
+        # @allure.title('Check all of the menu items')
+        def test_menu_items(self, driver):
+            menu_page = MenuPage(driver, 'https://demoqa.com/menu')
+            menu_page.open()
+            data = menu_page.check_menu()
+            assert data == ['Main Item 1', 'Main Item 2', 'Sub Item', 'Sub Item', 'SUB SUB LIST »', 'Sub Sub Item 1',
+                            'Sub Sub Item 2', 'Main Item 3'], "menu items do not exist or have not been selected"
