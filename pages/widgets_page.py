@@ -7,7 +7,8 @@ from selenium.webdriver.support.select import Select
 
 from generator.generator import generated_color, generated_date
 from locators.widgets_page_locators import AccordianPageLocators, AutoCompletePageLocators, DatePickerPageLocators, \
-    ProgressBarPageLocators, SliderPageLocators, TabsPageLocators, ToolTipsPageLocators, MenuPageLocators
+    ProgressBarPageLocators, SliderPageLocators, TabsPageLocators, ToolTipsPageLocators, MenuPageLocators, \
+    SelectMenuPageLocators
 from pages.base_page import BasePage
 
 
@@ -205,6 +206,7 @@ class ToolTipsPage(BasePage):
         tool_tip_text_section = self.get_text_from_tool_tips(self.locators.SECTION_LINK, self.locators.TOOL_TIP_SECTION)
         return tool_tip_text_button, tool_tip_text_field, tool_tip_text_contrary, tool_tip_text_section
 
+
 class MenuPage(BasePage):
     locators = MenuPageLocators()
 
@@ -216,3 +218,27 @@ class MenuPage(BasePage):
             self.action_move_to_element(item)
             data.append(item.text)
         return data
+
+
+class SelectMenuPage(BasePage):
+    locators = SelectMenuPageLocators()
+
+    def test_select_menu(self):
+        self.element_is_visible(self.locators.SELECT_VALUE).click()
+        self.element_is_visible(self.locators.SELECT_VALUE_INPUT).send_keys(Keys.ENTER)
+        select_value = self.element_is_visible(self.locators.SELECT_VALUE).text
+        self.element_is_visible(self.locators.SELECT_ONE).click()
+        self.element_is_visible(self.locators.SELECT_ONE_INPUT).send_keys(Keys.ENTER)
+        select_one = self.element_is_visible(self.locators.SELECT_ONE).text
+        self.element_is_visible(self.locators.OLD_STYLE).click()
+        self.element_is_visible(self.locators.OLD_STYLE_INPUT).click()
+        self.element_is_visible(self.locators.OLD_STYLE).click()
+        old_style = self.element_is_visible(self.locators.OLD_STYLE_INPUT).text
+        self.element_is_visible(self.locators.MULTISELECT).click()
+        self.element_is_visible(self.locators.SELECT_VALUE_INPUT).send_keys(Keys.ENTER)
+        multiselect_value = self.element_is_visible(self.locators.MULTISELECT_INPUT).text
+
+        time.sleep(5)
+        print(multiselect_value)
+
+        # return  select_value, select_one, old_style

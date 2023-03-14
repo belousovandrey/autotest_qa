@@ -1,7 +1,7 @@
 import time
 
 from pages.widgets_page import AccordianPage, AutoCompletePage, DatePickerPage, SliderPage, ProgressBarPage, TabsPage, \
-    ToolTipsPage, MenuPage
+    ToolTipsPage, MenuPage, SelectMenuPage
 
 
 class TestWidgets:
@@ -117,3 +117,14 @@ class TestWidgets:
             data = menu_page.check_menu()
             assert data == ['Main Item 1', 'Main Item 2', 'Sub Item', 'Sub Item', 'SUB SUB LIST »', 'Sub Sub Item 1',
                             'Sub Sub Item 2', 'Main Item 3'], "menu items do not exist or have not been selected"
+
+    class TestSelectMenuPage:
+        # @allure.title('Check all of the menu items')
+        def test_select_menu(self, driver):
+            select_menu_page = SelectMenuPage(driver, 'https://demoqa.com/select-menu')
+            select_menu_page.open()
+            select_value, select_one,old_style = select_menu_page.test_select_menu()
+
+            assert select_value == 'Group 1, option 1'
+            assert select_one == 'Dr.'
+            assert old_style == 'White'
