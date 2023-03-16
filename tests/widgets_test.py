@@ -98,7 +98,7 @@ class TestWidgets:
 
     # @allure.feature('Tool Tips')
     class TestToolTips:
-        # @allure.title('Check tool tips ')
+        # @allure.title('Check tool tips')
         def test_tool_tips(self, driver):
             tool_tips_page = ToolTipsPage(driver, 'https://demoqa.com/tool-tips')
             tool_tips_page.open()
@@ -123,7 +123,7 @@ class TestWidgets:
         def test_select_menu(self, driver):
             select_menu_page = SelectMenuPage(driver, 'https://demoqa.com/select-menu')
             select_menu_page.open()
-            select_value, select_one,old_style,multiselect_value = select_menu_page.test_select_menu()
+            select_value, select_one, old_style, multiselect_value = select_menu_page.test_select_menu()
 
             assert select_value == 'Group 1, option 1'
             assert select_one == 'Dr.'
