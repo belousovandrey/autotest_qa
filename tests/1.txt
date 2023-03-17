@@ -1,1 +1,11 @@
-Hello World251
+
+
+C:\allure-2.21.0\bin\allure.bat --version
+
+Set-Alias allure C:\allure-2.21.0\bin\allure.bat
+
+allure --version
+
+pytest --alluredir=tests\allure_results .\tests\elements_test.py
+
+pip install allure-pytest
