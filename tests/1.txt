@@ -6,6 +6,8 @@ Set-Alias allure C:\allure-2.21.0\bin\allure.bat
 
 allure --version
 
+pip install allure-pytest
+
 pytest --alluredir=tests\allure_results .\tests\elements_test.py
 
-pip install allure-pytest
+allure serve .\tests\allure_results\
